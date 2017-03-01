@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <script src="bower_components/bootstrap/less/bootstrap.less"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+  </head>
+	<body>
+		{{!--{{> header}}--}}
+
+		{{#if error}}
+			<p class="alert alert-warning">{{error}}</p>
+		{{/if}}
+
+		{{#if success}}
+			<p class="alert alert-success">{{success}}</p>
+		{{/if}}
+
+		{{#if notice}}
+			<p class="alert alert-info">{{notice}}</p>
+		{{/if}}
+
+		<!--where our other templates will insert-->
+		{{{body}}}
+
+	
+	</body>
+</html>

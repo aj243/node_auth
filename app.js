@@ -10,9 +10,34 @@ var users = require('./routes/users');
 
 var app = express();
 
+// extra modules
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require('connect-flash');
+var session = require('express-session');
+// var passport = require('./config/passport')(passport);
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+// routes ======================================================================
+// require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
+// database connection
+var configDB = require('./config/database.js');
+// mongoose.connect('mongodb://localhost/myappdatabase');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.set('view options', {layout: './layouts/main'});
+
+// prepare server for adding modules
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

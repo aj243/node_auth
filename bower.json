@@ -1,0 +1,20 @@
+{
+  "name": "user-authentication",
+  "description": "",
+  "main": "",
+  "authors": [
+    "aj243 <ayush243@yahoo.co.in>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/aj243/node_auth",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
