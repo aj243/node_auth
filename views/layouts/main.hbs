@@ -3,13 +3,13 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <script src="bower_components/bootstrap/less/bootstrap.less"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-		<script src="bower_components/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </head>
 	<body>
-		{{!--{{> header}}--}}
+		{{> header}}
 
 		{{#if error}}
 			<p class="alert alert-warning">{{error}}</p>
@@ -26,6 +26,5 @@
 		<!--where our other templates will insert-->
 		{{{body}}}
 
-	
 	</body>
 </html>
