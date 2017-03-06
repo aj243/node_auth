@@ -16,18 +16,14 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var session = require('express-session');
 var hbs = require('hbs');
+var LocalStrategy = require('passport-local').Strategy;
 require('./helpers/handlebars')(hbs); //inculding helpers
 
-// var passport = require('./config/passport')(passport);
-
 // required for passport
-app.use(session({secret: 'mindfire', name: 'session_id', saveUninitialized: true, resave: true}));
+app.use(session({secret: 'mindfire', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
-// routes ======================================================================
-// require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // database connection
 var configDB = require('./config/database.js');
@@ -50,6 +46,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// routes ======================================================================
+// require('./routes/index.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
+require('./config/passport')(passport);
 
 app.use('/', index);
 app.use('/users', users);
