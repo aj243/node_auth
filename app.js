@@ -27,7 +27,6 @@ app.use(flash());
 
 // database connection
 var configDB = require('./config/database.js');
-// mongoose.connect('mongodb://localhost/myappdatabase');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,9 +45,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// routes ======================================================================
-// require('./routes/index.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 require('./config/passport')(passport);
 

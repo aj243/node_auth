@@ -1,7 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy
 var passport = require('passport');
 var User = require('../models/user');
-// passport.use(new LocalStrategy(User.authenticate()));
 
 module.exports = function(password) {
 
@@ -17,12 +16,6 @@ module.exports = function(password) {
 		});
 	});
 
-	// =========================================================================
-	// LOCAL SIGNUP ============================================================
-	// =========================================================================
-	// we are using named strategies since we have one for login and one for signup
-	// by default, if there was no name, it would just be called 'local'
-
 	passport.use('local-signup', new LocalStrategy({
 		// by default, local strategy uses username and password, we will override with email
 		usernameField : 'email',
@@ -37,7 +30,7 @@ module.exports = function(password) {
 
 			// find a user whose email is the same as the forms email
 			// we are checking to see if the user trying to login already exists
-			User.findOne({ 'local.email' :  email }, function(err, user) {
+			User.findOne({ 'email' :  email }, function(err, user) {
 				// if there are any errors, return the error
 				if (err)
 					return done(err);
