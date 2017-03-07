@@ -16,7 +16,7 @@ userSchema.methods.generateHash = function(password){
 
 // comparing passwords
 userSchema.methods.vaildPassword = function(password){
-	bcrypt.compareSync(password, this.local.password); 
+	return bcrypt.compareSync(password, this.password); 
 }
 
 
