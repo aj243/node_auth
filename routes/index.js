@@ -22,19 +22,28 @@ router.get('/logout', function(req, res){
 	res.render('index');
 });
 
-router.post('/signup',
-	passport.authenticate('local-signup', { 
+router.post('/signup', function(req, res){
+	req.checkBody("email", "Enter a valid email address.").isEmail();
+	var errors = req.validationErrors();
+  if (errors) {
+		res.render('signup',{error: errors});
+		return;
+  } 
+	else {
+		passport.authenticate('local-signup', { 
 		successRedirect: '/users',
 		failureRedirect: '/signup',
 		failureFlash: true
-	}));
+		})
+	}
+});
 
-router.post('/login', 
+router.post('/login',
 	passport.authenticate('local-login', {
 		failureRedirect: '/login',
 		successRedirect: '/users',
 		failureFlash: true
- }));
-
+	})
+);
 
 module.exports = router;

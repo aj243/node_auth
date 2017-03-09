@@ -12,7 +12,9 @@
 		{{> header}}
 
 		{{#if error}}
-			<p class="alert alert-warning">{{error}}</p>
+			{{#each error}}
+				<p class="alert alert-warning">{{this.msg}}</p>
+			{{/each}}
 		{{/if}}
 
 		{{#if success}}
