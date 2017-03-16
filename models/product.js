@@ -9,5 +9,9 @@ var productSchema = new Schema({
 	price: Number,
 	category: String,
 	language: String,
-	details: String
+	details: String,
+	pages : Number
 });
+
+module.exports = mongoose.model('Product', productSchema);
+// module.exports = productSchema;
