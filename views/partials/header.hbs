@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
 				{{#if user}}
-          <li><a href="/">Products</a></li>
+          <li><a href="/products">Products</a></li>
           <li class="active"><a data-method='delete' href = "/logout">Logout <span class="sr-only"> {{user.email}} </span></a></li>
 				{{else}}
           <li><a href="/login">Login</a></li>

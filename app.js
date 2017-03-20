@@ -5,12 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var products = require('./routes/products');
-
-var app = express();
-
 // extra modules
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -19,6 +13,16 @@ var session = require('express-session');
 var hbs = require('hbs');
 var LocalStrategy = require('passport-local').Strategy;
 var validator = require('express-validator');
+
+// adding model
+require("./models/product");
+
+var index = require('./routes/index');
+var users = require('./routes/users');
+var products = require('./routes/products');
+
+var app = express();
+
 require('./helpers/handlebars')(hbs); //inculding helpers
 
 // required for passport
