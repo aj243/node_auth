@@ -2,27 +2,38 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var productModel = mongoose.model('Product');
+var file = require('file-system');// file system
+var fs = require('fs');
+var pdf = require('html-pdf');
 
-// var product1 = new productModel;
-// mongoose.model('users').find();
-// console.log(product);
+// Check for authentication
+router.all('*',function(req,res,next){
+	if(req.isAuthenticated()){
+		next();
+	}else{
+		res.redirect('/');
+	}
+});
 
 // GET product listing
-router.get('/', isLoggedIn, function(req, res) {
-	res.render('products/index', {
-		user : req.user, // get the user out of session and pass to template
-		product : productModel
-		// product : req.product
+router.get('/', function(req, res) {
+	productModel.find(function(err, products){
+		if(err) return res.sendStatus(500);
+		res.render('products/index', {
+			product : products
+		});
 	});
 });
 
-function isLoggedIn(req, res, next) {
-	// if user is authenticated in the session, carry on 
-	if (req.isAuthenticated())
-			return next();
-
-	// if they aren't redirect them to the home page
-	res.redirect('/');
-}
+// show product details
+router.get('/:obj_id', function(req, res){
+	obj_id = req.params.obj_id;
+	productModel.findOne({_id : obj_id}, function(err, products){
+		if(err) return res.sendStatus(500);
+		res.render('products/show', {
+			product : products,
+		});
+	});
+});
 
 module.exports = router;

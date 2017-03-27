@@ -3,23 +3,23 @@
 	<div class="row">		
 		{{#each product}}
 		<!-- LOCAL INFORMATION -->
-		<div class="col-sm-6">
-			<div class="well">
-				<h3><span class="fa fa-book"></span>{{@key}}: {{title}}</h3>
-					
-					<p>
-						<strong>author</strong>: {{@key}}: {{author}}<br>
-						<strong>summary</strong>: {{@key}}: {{summary}}<br>
-						<strong>price</strong>: {{@key}}: {{price}}<br>
-	{{!--category: String,
-	language: String,
-	details: String,
-	pages : Number--}}
-					</p>
+		<div class="col-sm-6 feature">
+			<a href="/products/{{id}}">
+				<div class="well">
+					<h3><span class="fa fa-book"></span>{{title}}</h3>
+						
+						<p>
+							<strong>author</strong>: {{author}}<br>
+							<strong>summary</strong>: {{summary}}<br>
+							<strong>price</strong>: {{price}}<br>
+							<strong>language</strong>: {{language}}<br>
+							<strong>details</strong>: {{details}}<br>
+							<strong>pages</strong>: {{pages}}<br>
+						</p>
 
-			</div>
+				</div>
+			</a>
 		</div>
 		{{/each}}
 	</div>
-
 </div>
